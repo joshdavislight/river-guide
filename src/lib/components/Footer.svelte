@@ -14,7 +14,7 @@
 			<!-- Links -->
 			<div class="flex items-center gap-6">
 				<a
-					href="https://github.com"
+					href="https://github.com/joshdavislight/river-guide/"
 					target="_blank"
 					rel="noopener noreferrer"
 					class="text-text-muted transition-colors hover:text-text-primary"
