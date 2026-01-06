@@ -1,0 +1,125 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+/* ===================================
+   RIVER GUIDE DESIGN SYSTEM
+   =================================== */
+
+/* Custom theme configuration */
+@theme {
+	/* Background layers */
+	--color-bg-base: #020617;
+	--color-bg-surface: #0f172a;
+	--color-bg-elevated: #1e293b;
+
+	/* Borders */
+	--color-border-subtle: rgba(51, 65, 85, 0.5);
+	--color-border-default: #334155;
+
+	/* Text */
+	--color-text-primary: #ffffff;
+	--color-text-secondary: #94a3b8;
+	--color-text-muted: #64748b;
+
+	/* Accent */
+	--color-accent-primary: #0ea5e9;
+	--color-accent-hover: #0284c7;
+	--color-accent-glow: rgba(14, 165, 233, 0.2);
+
+	/* Flow status colors */
+	--color-flow-optimal: #10b981;
+	--color-flow-low: #f59e0b;
+	--color-flow-high: #0ea5e9;
+	--color-flow-flood: #ef4444;
+
+	/* Permit difficulty colors */
+	--color-permit-easy: #10b981;
+	--color-permit-moderate: #f59e0b;
+	--color-permit-hard: #f97316;
+	--color-permit-extreme: #ef4444;
+
+	/* Fonts */
+	--font-sans: 'Inter', system-ui, sans-serif;
+	--font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+/* Base styles */
+html {
+	background-color: var(--color-bg-base);
+	color: var(--color-text-primary);
+	font-family: var(--font-sans);
+}
+
+body {
+	min-height: 100vh;
+	background-color: var(--color-bg-base);
+}
+
+/* Scrollbar styling for dark theme */
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+
+::-webkit-scrollbar-track {
+	background: var(--color-bg-surface);
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--color-border-default);
+	border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: var(--color-text-muted);
+}
+
+/* Typography prose customization for dark theme */
+.prose {
+	--tw-prose-body: var(--color-text-secondary);
+	--tw-prose-headings: var(--color-text-primary);
+	--tw-prose-links: var(--color-accent-primary);
+	--tw-prose-bold: var(--color-text-primary);
+	--tw-prose-bullets: var(--color-text-muted);
+	--tw-prose-quotes: var(--color-text-secondary);
+	--tw-prose-code: var(--color-accent-primary);
+	--tw-prose-hr: var(--color-border-default);
+}
+
+/* Flow indicator pulse animation */
+@keyframes flow-pulse {
+	0%,
+	100% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0.6;
+	}
+}
+
+.flow-optimal {
+	animation: flow-pulse 2s ease-in-out infinite;
+}
+
+/* Card hover glow effect */
+.card-glow {
+	transition: all 0.3s ease;
+}
+
+.card-glow:hover {
+	box-shadow: 0 10px 40px -10px var(--color-accent-glow);
+}
+
+/* Glass card effect */
+.glass-card {
+	background-color: rgba(15, 23, 42, 0.6);
+	backdrop-filter: blur(4px);
+	border: 1px solid var(--color-border-subtle);
+	border-radius: 0.75rem;
+}
+
+/* Focus states */
+:focus-visible {
+	outline: 2px solid var(--color-accent-primary);
+	outline-offset: 2px;
+}

@@ -1,0 +1,158 @@
+---
+# Basic Info
+name: "Chattooga River"
+slug: "chattooga-river"
+state: "Georgia/South Carolina"
+region: "Southeast"
+
+# River Stats
+miles: 50
+class: "III-V"
+classMax: 5
+daysMin: 2
+daysMax: 3
+
+# Locations
+putIn:
+  name: "Highway 28 (Section III)"
+  lat: 34.9234
+  lon: -83.1234
+takeOut:
+  name: "Lake Tugaloo"
+  lat: 34.6823
+  lon: -83.3567
+
+# Permit Information
+permit:
+  required: true
+  system: "Free Recreation.gov"
+  agency: "USFS"
+  url: "https://www.recreation.gov/permits/234636"
+  lotteryWindow:
+    open: ""
+    close: ""
+  resultsDate: ""
+  controlSeason:
+    start: "01-01"
+    end: "12-31"
+  permitsIssued: 0
+  applicationsAvg: 0
+  odds: 100.0
+  groupSizeMax: 12
+  fees:
+    application: 0
+    permit: 0
+    perPersonPerDay: false
+
+# USGS Gauges
+gauges:
+  - id: "02177000"
+    name: "Chattooga River at Clayton"
+    primary: true
+
+# Flow Information
+flows:
+  unit: "ft"
+  minimum: 1.5
+  optimal:
+    low: 1.8
+    high: 2.5
+  maximum: 3.5
+  season: "Mar-Nov"
+
+# Ratings
+ratings:
+  permitDifficulty: 1
+  amazingness: 4
+  popularity: 4
+  technicalDifficulty: 4
+  familyFriendly: 2
+
+# Tags
+tags:
+  - deliverance
+  - southeast
+  - class v
+  - free permit
+  - camping
+
+# Major Rapids
+rapids:
+  - mile: 15.0
+    name: "Bull Sluice"
+    class: "IV"
+    description: "Section III crux. Scout left."
+  - mile: 25.0
+    name: "Woodall Shoals"
+    class: "V"
+    description: "⚠️ DANGEROUS. Multiple fatalities. Portage recommended."
+  - mile: 30.0
+    name: "Five Falls"
+    class: "IV-V"
+    description: "Five consecutive drops. Scout carefully."
+  - mile: 35.0
+    name: "Sock-em-Dog"
+    class: "V"
+    description: "Big slide. Expert only."
+
+# Best Camps
+camps:
+  - name: "Designated Primitive Sites"
+    mile: 0
+    features: ["first-come"]
+    notes: "Primitive designated camps throughout"
+
+# Shuttle Services
+shuttles:
+  - name: "Southeastern Expeditions"
+    location: "Clayton, GA"
+    phone: "(706) 782-4331"
+  - name: "Nantahala Outdoor Center"
+    location: "Bryson City, NC"
+    phone: "(828) 785-5082"
+
+# Dangers & Warnings
+dangers:
+  - type: "woodall-shoals"
+    description: "⚠️ Woodall Shoals has caused multiple fatalities. Portage strongly recommended."
+  - type: "section-iv"
+    description: "Section IV is serious — multiple Class V rapids. Expert only."
+  - type: "cold-water"
+    description: "Cold year-round. Undercut rocks throughout."
+
+# Meta
+featured: false
+lastUpdated: "2026-01-06"
+---
+
+# Chattooga River
+
+The Chattooga is the "Deliverance" river — made famous by the 1972 film. It's the best overnight river trip in the Southeast, with Section III offering great family whitewater and Section IV providing serious Class IV-V for experts.
+
+## Overview
+
+Flowing along the Georgia-South Carolina border, the Chattooga offers 50+ miles of Wild and Scenic River. Section III (Highway 28 to Earl's Ford) is a classic intermediate run. Section IV (Earl's Ford to Lake Tugaloo) is expert territory with multiple Class V rapids.
+
+## The Experience
+
+The Chattooga has a different character than Western rivers — the forest is lush and green, the water is cold and clear, and the rapids are technical. Section III builds confidence; Section IV tests it.
+
+## When to Go
+
+**March-November:** Runnable year-round if there's rain.
+
+**Flow-dependent:** Check the gauge at Clayton.
+
+## Permit Strategy
+
+Free permit via Recreation.gov. 100% success rate.
+
+## Special Considerations
+
+- "Deliverance" river — historical and cultural significance
+- Section III: Great family/intermediate run
+- Section IV: Expert only — multiple Class V rapids
+- ⚠️ Woodall Shoals has caused fatalities — portage recommended
+- Cold year-round — wetsuit or drysuit recommended
+- Best overnight river trip in the Southeast
+
