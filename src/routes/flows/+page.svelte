@@ -4,6 +4,12 @@
 
 <svelte:head>
 	<title>Flow Dashboard — River Guide</title>
+	<meta property="og:title" content="Flow Dashboard — River Guide" />
+	<meta property="og:description" content="Real-time USGS flow data for multi-day rafting rivers." />
+	<meta property="og:url" content="https://rivers.saltyfox.xyz/flows" />
+	<meta name="twitter:title" content="Flow Dashboard — River Guide" />
+	<meta name="twitter:description" content="Real-time USGS flow data for multi-day rafting rivers." />
+	<link rel="canonical" href="https://rivers.saltyfox.xyz/flows" />
 </svelte:head>
 
 <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">

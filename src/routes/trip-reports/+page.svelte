@@ -4,6 +4,12 @@
 
 <svelte:head>
 	<title>Trip Reports — River Guide</title>
+	<meta property="og:title" content="Trip Reports — River Guide" />
+	<meta property="og:description" content="Community trip reports and beta from fellow boaters." />
+	<meta property="og:url" content="https://rivers.saltyfox.xyz/trip-reports" />
+	<meta name="twitter:title" content="Trip Reports — River Guide" />
+	<meta name="twitter:description" content="Community trip reports and beta from fellow boaters." />
+	<link rel="canonical" href="https://rivers.saltyfox.xyz/trip-reports" />
 </svelte:head>
 
 <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">

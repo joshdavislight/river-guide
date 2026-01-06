@@ -4,6 +4,12 @@
 
 <svelte:head>
 	<title>Permit Calendar — River Guide</title>
+	<meta property="og:title" content="Permit Calendar — River Guide" />
+	<meta property="og:description" content="Lottery windows, deadlines, and permit availability for Western US rivers." />
+	<meta property="og:url" content="https://rivers.saltyfox.xyz/permits" />
+	<meta name="twitter:title" content="Permit Calendar — River Guide" />
+	<meta name="twitter:description" content="Lottery windows, deadlines, and permit availability for Western US rivers." />
+	<link rel="canonical" href="https://rivers.saltyfox.xyz/permits" />
 </svelte:head>
 
 <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">

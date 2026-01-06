@@ -15,6 +15,18 @@
 
 <svelte:head>
 	<title>{data.river?.name ?? 'River'} — River Guide</title>
+	{#if data.river}
+		<meta property="og:title" content="{data.river.name} — River Guide" />
+		<meta property="og:description" content="{data.river.miles} miles, Class {data.river.class} in {data.river.state}. {data.river.daysMin}-{data.river.daysMax} day trip." />
+		<meta property="og:url" content="https://rivers.saltyfox.xyz/rivers/{data.river.slug}" />
+		<meta name="twitter:title" content="{data.river.name} — River Guide" />
+		<meta name="twitter:description" content="{data.river.miles} miles, Class {data.river.class} in {data.river.state}. {data.river.daysMin}-{data.river.daysMax} day trip." />
+		<link rel="canonical" href="https://rivers.saltyfox.xyz/rivers/{data.river.slug}" />
+		{#if data.river.images?.hero}
+			<meta property="og:image" content="{data.river.images.hero}" />
+			<meta name="twitter:image" content="{data.river.images.hero}" />
+		{/if}
+	{/if}
 </svelte:head>
 
 <div class="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">

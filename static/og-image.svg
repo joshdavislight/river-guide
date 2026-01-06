@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#020617"/>
+      <stop offset="100%" style="stop-color:#0f172a"/>
+    </linearGradient>
+    <linearGradient id="wave1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#0ea5e9"/>
+      <stop offset="100%" style="stop-color:#38bdf8"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  
+  <!-- Decorative topo lines -->
+  <g opacity="0.1" stroke="#38bdf8" fill="none" stroke-width="1">
+    <path d="M0 100 Q300 50, 600 100 T1200 100"/>
+    <path d="M0 150 Q300 100, 600 150 T1200 150"/>
+    <path d="M0 480 Q300 530, 600 480 T1200 480"/>
+    <path d="M0 530 Q300 580, 600 530 T1200 530"/>
+  </g>
+  
+  <!-- Wave icon -->
+  <g transform="translate(100, 200)">
+    <path 
+      d="M0 80 Q 40 40, 80 80 T 160 80 T 240 80" 
+      stroke="url(#wave1)" 
+      stroke-width="20" 
+      fill="none" 
+      stroke-linecap="round"
+    />
+    <path 
+      d="M0 130 Q 40 90, 80 130 T 160 130 T 240 130" 
+      stroke="#38bdf8" 
+      stroke-width="16" 
+      fill="none" 
+      stroke-linecap="round"
+      opacity="0.7"
+    />
+    <path 
+      d="M0 175 Q 40 145, 80 175 T 160 175 T 240 175" 
+      stroke="#7dd3fc" 
+      stroke-width="12" 
+      fill="none" 
+      stroke-linecap="round"
+      opacity="0.5"
+    />
+  </g>
+  
+  <!-- Title -->
+  <text x="400" y="290" font-family="Inter, system-ui, sans-serif" font-size="72" font-weight="700" fill="#f8fafc">
+    River Guide
+  </text>
+  
+  <!-- Subtitle -->
+  <text x="400" y="360" font-family="Inter, system-ui, sans-serif" font-size="28" font-weight="400" fill="#94a3b8">
+    Multi-day rafting rivers of the Western US
+  </text>
+  
+  <!-- Features -->
+  <g font-family="Inter, system-ui, sans-serif" font-size="20" fill="#64748b">
+    <text x="400" y="430">Flow Data</text>
+    <text x="400" y="430" dx="120">•</text>
+    <text x="400" y="430" dx="140">Permits</text>
+    <text x="400" y="430" dx="240">•</text>
+    <text x="400" y="430" dx="260">Trip Planning</text>
+  </g>
+  
+  <!-- URL -->
+  <text x="400" y="530" font-family="JetBrains Mono, monospace" font-size="18" fill="#0ea5e9">
+    rivers.saltyfox.xyz
+  </text>
+</svg>
+

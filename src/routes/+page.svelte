@@ -166,6 +166,12 @@
 
 <svelte:head>
 	<title>River Guide — Multi-day Rafting Rivers</title>
+	<meta property="og:title" content="River Guide — Multi-day Rafting Rivers" />
+	<meta property="og:description" content="Flow data, permits, and trip planning for Western US rivers." />
+	<meta property="og:url" content="https://rivers.saltyfox.xyz/" />
+	<meta name="twitter:title" content="River Guide — Multi-day Rafting Rivers" />
+	<meta name="twitter:description" content="Flow data, permits, and trip planning for Western US rivers." />
+	<link rel="canonical" href="https://rivers.saltyfox.xyz/" />
 </svelte:head>
 
 <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
