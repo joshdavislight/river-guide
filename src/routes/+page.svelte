@@ -9,6 +9,7 @@
 		ChevronUp,
 		ChevronDown
 	} from 'lucide-svelte';
+	import { browser } from '$app/environment';
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
 	import RiverCard from '$lib/components/RiverCard.svelte';
@@ -18,8 +19,8 @@
 
 	let { data }: { data: PageData } = $props();
 
-	// Read search query from URL
-	const searchQuery = $derived($page.url.searchParams.get('q') ?? '');
+	// Read search query from URL (only in browser, empty during prerender)
+	const searchQuery = $derived(browser ? ($page.url.searchParams.get('q') ?? '') : '');
 	let showFilters = $state(false);
 	let selectedState = $state('all');
 	let selectedPermit = $state('all');
