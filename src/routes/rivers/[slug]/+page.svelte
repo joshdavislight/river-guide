@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { MapPin, Calendar, Gauge, AlertTriangle, Tent, Truck, ArrowLeft, Ruler, Waves, Clock, Ticket, Droplets } from 'lucide-svelte';
 	import type { PageData } from './$types';
 	import FlowIndicator from '$lib/components/FlowIndicator.svelte';
@@ -8,9 +9,41 @@
 
 	let { data }: { data: PageData } = $props();
 
+	let sections: { id: string; label: string }[] = $state([]);
+
+	function slugify(text: string): string {
+		return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+	}
+
+	function shortenLabel(text: string): string {
+		// Remove common prefixes and keep it concise
+		const shortened = text
+			.replace(/^(The|Special|Major|Best)\s+/i, '')
+			.replace(/\s*&\s*Warnings$/i, '')
+			.replace(/\s+Services$/i, '');
+		return shortened;
+	}
+
 	function formatFlow(value: number): string {
 		return value.toLocaleString();
 	}
+
+	function scrollToSection(e: MouseEvent, id: string) {
+		e.preventDefault();
+		const el = document.getElementById(id);
+		if (el) {
+			const y = el.getBoundingClientRect().top + window.scrollY - 200;
+			window.scrollTo({ top: y, behavior: 'smooth' });
+		}
+	}
+
+	onMount(() => {
+		const headers = document.querySelectorAll('.river-content h2');
+		sections = Array.from(headers).map((h2) => {
+			if (!h2.id) h2.id = slugify(h2.textContent || '');
+			return { id: h2.id, label: shortenLabel(h2.textContent || '') };
+		});
+	});
 </script>
 
 <svelte:head>
@@ -181,10 +214,28 @@
 			</div>
 		{/if}
 
-		<!-- Content -->
-		<article class="prose prose-invert max-w-none">
-			{@html data.content}
-		</article>
+		<!-- Section Navigation -->
+		{#if sections.length > 0}
+			<nav class="sticky top-0 z-10 -mx-4 mb-8 overflow-x-auto bg-bg-base/90 px-4 py-3 backdrop-blur-sm sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+				<div class="flex gap-2">
+					{#each sections as section}
+						<a
+							href="#{section.id}"
+							onclick={(e) => scrollToSection(e, section.id)}
+							class="whitespace-nowrap rounded-full bg-bg-elevated px-3 py-1.5 text-sm text-text-secondary transition-colors hover:bg-bg-surface hover:text-text-primary"
+						>
+							{section.label}
+						</a>
+					{/each}
+				</div>
+			</nav>
+		{/if}
+
+		<div class="river-content">
+			<!-- Content -->
+			<article class="prose prose-invert max-w-none">
+				{@html data.content}
+			</article>
 
 		<!-- Rapids -->
 		{#if data.river.rapids?.length}
@@ -276,6 +327,7 @@
 				</div>
 			</section>
 		{/if}
+		</div>
 	{:else}
 		<div class="flex h-64 items-center justify-center">
 			<p class="text-text-muted">River not found</p>

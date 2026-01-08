@@ -160,10 +160,6 @@ The river drops over 3,000 feet from Boundary Creek to its confluence with the M
 
 **Late season (August-September):** Lower, more technical water (1,500-2,500 cfs). Warmer swimming. Fishing peaks.
 
-### When NOT to Go
-
-**Peak season crowds (July-August):** Heavy traffic with multiple groups daily. Expect less solitude and competition for camps. If you value wilderness experience over convenience, aim for shoulder seasons (late May, early June, late August, early September).
-
 ## Permit Strategy
 
 With only 361 permits for over 20,000 applicants, the [Middle Fork lottery](https://www.recreation.gov/permits/234623) is brutally competitive. Tips:
@@ -175,6 +171,12 @@ With only 361 permits for over 20,000 applicants, the [Middle Fork lottery](http
 - **Hot springs camp limit**: You'll only be assigned ONE hot springs camp maximum, even if you request multiple. Plan accordingly.
 - **No camp selection**: During control season, camps are assigned by the Forest Service. You don't get to choose.
 - **Hot springs competition**: Sheepeater, Cougar Bar, and other hot springs camps are most competitive assignments.
+- **Peak season crowds**: July and August see the heaviest traffic. You'll encounter multiple groups daily. Shoulder seasons (late May, early June, late August, early September) offer more solitude.
+
+## Shuttle Services
+
+- **River Shuttle Service** - Stanley, ID - [tel:(208) 756-1111](tel:+12087561111) - [Website](https://example.com)
+- **Middle Fork Shuttle** - Stanley, ID - [tel:(208) 756-2222](tel:+12087562222)
 
 ## Special Considerations
 

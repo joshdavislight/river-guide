@@ -137,7 +137,7 @@ shuttles:
 # Dangers & Warnings
 dangers:
   - type: "high-water"
-    description: "June flows can exceed 6,000 cfs, creating large hydraulics"
+    description: "June flows can exceed 6ft, creating large hydraulics"
   - type: "remoteness"
     description: "100+ miles from roads. No cell service. Plan for self-rescue."
   - type: "cold-water"
@@ -145,43 +145,40 @@ dangers:
 
 # Meta
 featured: true
-lastUpdated: "2025-01-08"
+lastUpdated: "2025-01-06"
 ---
+
+# Middle Fork Salmon River
 
 The Middle Fork of the Salmon River is the quintessential wilderness river trip in North America. Flowing 104 miles through the heart of the Frank Church-River of No Return Wilderness, it offers an unparalleled combination of whitewater, hot springs, fishing, side hikes, and pristine wilderness.
 
-The river drops over 3,000 feet from Boundary Creek to its confluence with the Main Salmon at Cache Bar, creating continuous Class III-IV whitewater with several standout rapids that deserve respect and scouting. What sets the Middle Fork apart is the complete package: crystal-clear water, abundant wildlife, natural hot springs at nearly every camp, world-class fly fishing for cutthroat and rainbow trout, and a true wilderness setting where you won't see roads, powerlines, or other signs of civilization for the entire trip.
+## Overview
+
+The river drops over 3,000 feet from Boundary Creek to its confluence with the Main Salmon at Cache Bar. The gradient creates continuous Class III-IV whitewater with several standout rapids that deserve respect and scouting.
+
+## The Experience
+
+What sets the Middle Fork apart is the complete package: crystal-clear water, abundant wildlife, natural hot springs at nearly every camp, world-class fly fishing for cutthroat and rainbow trout, and a true wilderness setting where you won't see roads, powerlines, or other signs of civilization for the entire trip.
 
 ## When to Go
 
-**High water (June):** Big, pushy water at 4,000-6,000+ cfs. Tappan Falls and Redside become serious. Experienced boaters only.
+**High water (June):** Big, pushy water. Tappan Falls and Redside become serious. Experienced boaters only.
 
-**Mid-season (July):** Sweet spot for most groups. Warm weather, good flows (2,500-4,000 cfs), manageable rapids.
+**Mid-season (July):** Sweet spot for most groups. Warm weather, good flows, manageable rapids.
 
-**Late season (August-September):** Lower, more technical water (1,500-2,500 cfs). Warmer swimming. Fishing peaks.
-
-### When NOT to Go
-
-**Peak season crowds (July-August):** Heavy traffic with multiple groups daily. Expect less solitude and competition for camps. If you value wilderness experience over convenience, aim for shoulder seasons (late May, early June, late August, early September).
+**Late season (August-September):** Lower, more technical water. Warmer swimming. Fishing peaks.
 
 ## Permit Strategy
 
-With only 361 permits for over 20,000 applicants, the [Middle Fork lottery](https://www.recreation.gov/permits/234623) is brutally competitive. Tips:
+With only 361 permits for over 20,000 applicants, the Middle Fork lottery is brutally competitive. Tips:
 - Apply for shoulder season dates (late May, early September)
 - Check for cancellations starting mid-March
 - Pre/post season permits (before May 28, after September 3) are first-come-first-served starting October 1
 
-**Permit Realities:**
-- **Hot springs camp limit**: You'll only be assigned ONE hot springs camp maximum, even if you request multiple. Plan accordingly.
-- **No camp selection**: During control season, camps are assigned by the Forest Service. You don't get to choose.
-- **Hot springs competition**: Sheepeater, Cougar Bar, and other hot springs camps are most competitive assignments.
-
 ## Special Considerations
 
-- 🏕️ **Camps assigned during control season** - You get what you're given. Build your itinerary around assigned camps.
-- 🔥 **Fires may be restricted** - Always bring a stove as backup. Check current regulations before launch.
-- 🐻 **Bear canisters recommended** (not required) - Black bears are present but generally not aggressive.
-- ✈️ **Fly-in option to Indian Creek** - Adds $400-600/person but provides epic wilderness experience and cuts driving.
-- 🌊 **Tappan Falls at high water** - Above 3.5 feet (roughly 5,000+ cfs), Tappan becomes significantly more powerful with large hydraulics. Multiple flip reports. Scout carefully and consider portage option on left.
-- 🐍 **Rattlesnakes common** - Especially at lower elevation camps in mid-late season. Check under dry bags and gear before packing up.
-- ❄️ **Cold water risk** - Snowmelt-fed water stays cold even in August. Hypothermia is real with long swims. Dress appropriately.
+- Camps are assigned during control season
+- Fires may be restricted - bring a stove
+- Bear canisters recommended (not required)
+- Fly-in option to Indian Creek adds cost but epic experience
+
