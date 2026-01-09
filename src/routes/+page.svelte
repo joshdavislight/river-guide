@@ -32,7 +32,17 @@
 	] as const;
 
 	// Get responsive CSS classes based on breakpoint
+	// Only applies responsive hiding when all columns are visible (default state)
+	// If user has customized columns, show exactly what they selected
 	function getResponsiveClass(responsive: string): string {
+		// Check if user has customized column visibility
+		const allColumnsVisible = Object.values(visibleColumns).every(Boolean);
+
+		if (!allColumnsVisible) {
+			return ''; // User customized columns - show all selected, no responsive hiding
+		}
+
+		// All columns visible (default state) - apply responsive hiding for graceful degradation
 		const classes: Record<string, string> = {
 			always: '',
 			sm: 'hidden sm:table-cell',
