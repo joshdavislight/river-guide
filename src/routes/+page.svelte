@@ -4,7 +4,6 @@
 		LayoutGrid,
 		List,
 		CalendarDays,
-		MapPin,
 		Waves,
 		ArrowUpDown,
 		ChevronUp,
@@ -15,11 +14,86 @@
 	import { goto } from '$app/navigation';
 	import RiverCard from '$lib/components/RiverCard.svelte';
 	import RiverCalendar from '$lib/components/RiverCalendar.svelte';
-	import PermitBadge from '$lib/components/PermitBadge.svelte';
+	import TableCell from '$lib/components/TableCell.svelte';
 	import { isSelfIssuePermit, getPermitDeadline, isLotteryClosingSoon } from '$lib/utils/riverHelpers';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
+
+	// Table column configuration - defines all dynamic columns after River name
+	const TABLE_COLUMNS = [
+		{ key: 'location', label: 'Location', sortKey: 'state', sortable: true, responsive: 'always' },
+		{ key: 'class', label: 'Class', sortKey: 'class', sortable: true, responsive: 'sm' },
+		{ key: 'miles', label: 'Miles', sortKey: 'miles', sortable: true, responsive: 'md' },
+		{ key: 'days', label: 'Days', sortKey: 'days', sortable: true, responsive: 'md' },
+		{ key: 'season', label: 'Season', sortKey: undefined, sortable: false, responsive: 'md' },
+		{ key: 'permit', label: 'Permit', sortKey: 'permit', sortable: true, responsive: 'always' },
+		{ key: 'deadline', label: 'Deadline', sortKey: undefined, sortable: false, responsive: 'lg' }
+	] as const;
+
+	// Get responsive CSS classes based on breakpoint
+	function getResponsiveClass(responsive: string): string {
+		const classes: Record<string, string> = {
+			always: '',
+			sm: 'hidden sm:table-cell',
+			md: 'hidden md:table-cell',
+			lg: 'hidden lg:table-cell'
+		};
+		return classes[responsive] ?? '';
+	}
+
+	// Generate cell data for TableCell component
+	function getCellData(river: (typeof data.rivers)[0], key: string) {
+		switch (key) {
+			case 'location':
+				return { type: 'location' as const, text: river.state };
+			case 'class':
+				return {
+					type: 'text' as const,
+					text: river.class,
+					className: 'font-medium text-accent-primary'
+				};
+			case 'miles':
+				return {
+					type: 'text' as const,
+					text: river.miles.toString(),
+					className: 'font-mono text-sm text-text-secondary'
+				};
+			case 'days':
+				return {
+					type: 'text' as const,
+					text: `${river.daysMin}-${river.daysMax}`,
+					className: 'text-sm text-text-secondary'
+				};
+			case 'season':
+				return {
+					type: 'text' as const,
+					text: river.flows?.season ?? '—',
+					className: river.flows?.season
+						? 'text-sm font-medium text-accent-primary'
+						: 'text-sm text-text-muted'
+				};
+			case 'permit':
+				return {
+					type: 'permit' as const,
+					difficulty: river.ratings?.permitDifficulty ?? 1,
+					permitRequired: river.permit?.required !== false,
+					isSelfIssue: isSelfIssuePermit(river),
+					hasData:
+						!!river.ratings?.permitDifficulty ||
+						river.permit?.required === false ||
+						isSelfIssuePermit(river)
+				};
+			case 'deadline':
+				return {
+					type: 'deadline' as const,
+					text: getPermitDeadline(river),
+					closingSoon: isLotteryClosingSoon(river)
+				};
+			default:
+				return { type: 'text' as const, text: '—', className: 'text-text-muted' };
+		}
+	}
 
 	// Read search query from URL (only in browser, empty during prerender)
 	const searchQuery = $derived(browser ? ($page.url.searchParams.get('q') ?? '') : '');
@@ -373,6 +447,7 @@
 					<table class="w-full">
 						<thead>
 							<tr class="border-b border-border-subtle bg-bg-elevated/50">
+								<!-- River name column (always first, always visible) -->
 								<th class="px-3 py-2.5 text-left">
 									<button
 										type="button"
@@ -391,116 +466,31 @@
 										{/if}
 									</button>
 								</th>
-								{#if visibleColumns.location}
-									<th class="px-2 py-2.5 text-left">
-										<button
-											type="button"
-											onclick={() => toggleSort('state')}
-											class="flex items-center gap-1 text-sm font-semibold text-text-primary hover:text-accent-primary"
-										>
-											Location
-											{#if sortColumn === 'state'}
-												{#if sortDirection === 'asc'}
-													<ChevronUp class="h-4 w-4" />
+								<!-- Dynamic columns from config -->
+								{#each TABLE_COLUMNS.filter((col) => visibleColumns[col.key]) as col}
+									<th class="px-2 py-2.5 text-left {getResponsiveClass(col.responsive)}">
+										{#if col.sortable && col.sortKey}
+											<button
+												type="button"
+												onclick={() => toggleSort(col.sortKey)}
+												class="flex items-center gap-1 text-sm font-semibold text-text-primary hover:text-accent-primary"
+											>
+												{col.label}
+												{#if sortColumn === col.sortKey}
+													{#if sortDirection === 'asc'}
+														<ChevronUp class="h-4 w-4" />
+													{:else}
+														<ChevronDown class="h-4 w-4" />
+													{/if}
 												{:else}
-													<ChevronDown class="h-4 w-4" />
+													<ArrowUpDown class="h-3 w-3 text-text-muted" />
 												{/if}
-											{:else}
-												<ArrowUpDown class="h-3 w-3 text-text-muted" />
-											{/if}
-										</button>
+											</button>
+										{:else}
+											<span class="text-sm font-semibold text-text-primary">{col.label}</span>
+										{/if}
 									</th>
-								{/if}
-								{#if visibleColumns.class}
-									<th class="hidden px-2 py-2.5 text-left sm:table-cell">
-										<button
-											type="button"
-											onclick={() => toggleSort('class')}
-											class="flex items-center gap-1 text-sm font-semibold text-text-primary hover:text-accent-primary"
-										>
-											Class
-											{#if sortColumn === 'class'}
-												{#if sortDirection === 'asc'}
-													<ChevronUp class="h-4 w-4" />
-												{:else}
-													<ChevronDown class="h-4 w-4" />
-												{/if}
-											{:else}
-												<ArrowUpDown class="h-3 w-3 text-text-muted" />
-											{/if}
-										</button>
-									</th>
-								{/if}
-								{#if visibleColumns.miles}
-									<th class="hidden px-2 py-2.5 text-left md:table-cell">
-										<button
-											type="button"
-											onclick={() => toggleSort('miles')}
-											class="flex items-center gap-1 text-sm font-semibold text-text-primary hover:text-accent-primary"
-										>
-											Miles
-											{#if sortColumn === 'miles'}
-												{#if sortDirection === 'asc'}
-													<ChevronUp class="h-4 w-4" />
-												{:else}
-													<ChevronDown class="h-4 w-4" />
-												{/if}
-											{:else}
-												<ArrowUpDown class="h-3 w-3 text-text-muted" />
-											{/if}
-										</button>
-									</th>
-								{/if}
-								{#if visibleColumns.days}
-									<th class="hidden px-2 py-2.5 text-left md:table-cell">
-										<button
-											type="button"
-											onclick={() => toggleSort('days')}
-											class="flex items-center gap-1 text-sm font-semibold text-text-primary hover:text-accent-primary"
-										>
-											Days
-											{#if sortColumn === 'days'}
-												{#if sortDirection === 'asc'}
-													<ChevronUp class="h-4 w-4" />
-												{:else}
-													<ChevronDown class="h-4 w-4" />
-												{/if}
-											{:else}
-												<ArrowUpDown class="h-3 w-3 text-text-muted" />
-											{/if}
-										</button>
-									</th>
-								{/if}
-								{#if visibleColumns.season}
-									<th class="hidden px-2 py-2.5 text-left md:table-cell">
-										<span class="text-sm font-semibold text-text-primary">Season</span>
-									</th>
-								{/if}
-								{#if visibleColumns.permit}
-									<th class="px-2 py-2.5 text-left">
-										<button
-											type="button"
-											onclick={() => toggleSort('permit')}
-											class="flex items-center gap-1 text-sm font-semibold text-text-primary hover:text-accent-primary"
-										>
-											Permit
-											{#if sortColumn === 'permit'}
-												{#if sortDirection === 'asc'}
-													<ChevronUp class="h-4 w-4" />
-												{:else}
-													<ChevronDown class="h-4 w-4" />
-												{/if}
-											{:else}
-												<ArrowUpDown class="h-3 w-3 text-text-muted" />
-											{/if}
-										</button>
-									</th>
-								{/if}
-								{#if visibleColumns.deadline}
-									<th class="hidden px-2 py-2.5 text-left lg:table-cell">
-										<span class="text-sm font-semibold text-text-primary">Deadline</span>
-									</th>
-								{/if}
+								{/each}
 							</tr>
 						</thead>
 						<tbody class="divide-y divide-border-subtle">
@@ -509,6 +499,7 @@
 									class="group cursor-pointer transition-colors hover:bg-bg-elevated/50"
 									onclick={() => (window.location.href = `/rivers/${river.slug}`)}
 								>
+									<!-- River name column (always first) -->
 									<td class="px-3 py-2.5">
 										<a
 											href="/rivers/{river.slug}"
@@ -517,67 +508,12 @@
 											{river.name}
 										</a>
 									</td>
-									{#if visibleColumns.location}
-										<td class="px-2 py-2.5">
-											<span class="flex items-center gap-1 text-sm text-text-secondary">
-												<MapPin class="h-3.5 w-3.5" />
-												{river.state}
-											</span>
+									<!-- Dynamic columns from config -->
+									{#each TABLE_COLUMNS.filter((col) => visibleColumns[col.key]) as col}
+										<td class="px-2 py-2.5 {getResponsiveClass(col.responsive)}">
+											<TableCell data={getCellData(river, col.key)} />
 										</td>
-									{/if}
-									{#if visibleColumns.class}
-										<td class="hidden px-2 py-2.5 sm:table-cell">
-											<span class="font-medium text-accent-primary">{river.class}</span>
-										</td>
-									{/if}
-									{#if visibleColumns.miles}
-										<td class="hidden px-2 py-2.5 md:table-cell">
-											<span class="font-mono text-sm text-text-secondary">{river.miles}</span>
-										</td>
-									{/if}
-									{#if visibleColumns.days}
-										<td class="hidden px-2 py-2.5 md:table-cell">
-											<span class="text-sm text-text-secondary">
-												{river.daysMin}-{river.daysMax}
-											</span>
-										</td>
-									{/if}
-									{#if visibleColumns.season}
-										<td class="hidden px-2 py-2.5 md:table-cell">
-											{#if river.flows?.season}
-												<span class="text-sm font-medium text-accent-primary">{river.flows.season}</span>
-											{:else}
-												<span class="text-sm text-text-muted">—</span>
-											{/if}
-										</td>
-									{/if}
-									{#if visibleColumns.permit}
-										<td class="px-2 py-2.5">
-											{#if river.ratings?.permitDifficulty || river.permit?.required === false || isSelfIssuePermit(river)}
-												<PermitBadge 
-													difficulty={river.ratings?.permitDifficulty ?? 1} 
-													permitRequired={river.permit?.required !== false}
-													isSelfIssue={isSelfIssuePermit(river)}
-													compact 
-												/>
-											{:else}
-												<span class="text-sm text-text-muted">—</span>
-											{/if}
-										</td>
-									{/if}
-									{#if visibleColumns.deadline}
-										<td class="hidden px-2 py-2.5 lg:table-cell">
-											{#if getPermitDeadline(river)}
-												{@const deadline = getPermitDeadline(river)}
-												{@const closingSoon = isLotteryClosingSoon(river)}
-												<span class="text-sm {closingSoon ? 'font-medium text-amber-400' : 'text-text-secondary'}">
-													{deadline}
-												</span>
-											{:else}
-												<span class="text-sm text-text-muted">—</span>
-											{/if}
-										</td>
-									{/if}
+									{/each}
 								</tr>
 							{/each}
 						</tbody>
