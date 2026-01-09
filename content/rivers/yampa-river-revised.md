@@ -120,6 +120,12 @@ dangers:
   - type: "heat"
     description: "Summer temps can exceed 100°F in the canyons."
 
+# Season Overrides
+seasons:
+  - optimal: [5,6]
+  - good: [7]
+  - avoid: [8,9]
+
 featured: true
 lastUpdated: "2025-01-08"
 ---

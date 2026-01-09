@@ -62,7 +62,7 @@ flows:
 
 # Ratings
 ratings:
-  permitDifficulty: 1
+  permitDifficulty: 2
   amazingness: 5
   popularity: 4
   technicalDifficulty: 4
@@ -160,14 +160,14 @@ The first 50+ miles are relatively mellow flatwater floating through some of the
 
 ## Permit Strategy
 
-[Cataract Canyon uses first-come-first-served permits](https://www.recreation.gov/permits/621747) available 4 months in advance via Recreation.gov. Approximately 95% success rate if you book when reservations open. Tips:
-- Book exactly 4 months ahead when your desired dates open
+[Cataract Canyon uses first-come-first-served permits](https://www.recreation.gov/permits/621747). Permits for the entire year become available on Jan. 1 via Recreation.gov. Approximately 95% success rate if you book when reservations open. Tips:
+- Book early for your desired dates
 - Spring (May-June) fills fastest for optimal flows
 - Fall dates (September-October) often available last-minute
 - No lottery, no waiting—just plan ahead
 
 **Permit Realities:**
-- **Self-issue system is straightforward** - Unlike lottery rivers, you just book a date 4 months out. If it's available, you're in. Simple.
+- **Self-issue system is straightforward** - Unlike lottery rivers, you just book a date. If it's available, you're in. Simple.
 - **Jet boat coordination is CRITICAL** - You must arrange jet boat pickup from Hite/Dirty Devil well in advance. This isn't optional—there's no road access to most takeout points. Jet boat services book up months ahead. Budget $150-250/person.
 - **Lake Powell levels change everything** - The reservoir level determines how much flatwater rowing you'll face. Check Bureau of Reclamation data for current pool elevation. Below 3,550 feet elevation, more rapids are exposed and backwater is minimal. Above 3,600 feet, expect significant flatwater.
 - **Motor permits available** - If Lake Powell backwater is extensive, consider getting a motor permit to power through the flatwater. Adds weight/complexity but saves hours of rowing into headwinds.

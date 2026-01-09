@@ -378,7 +378,7 @@
 
 	<!-- Calendar Grid -->
 	<div class="glass-card overflow-hidden rounded-xl">
-		<div class="overflow-x-auto">
+		<div class="max-h-[70vh] overflow-auto">
 			<table class="w-full border-collapse">
 				<thead class="sticky top-0 z-20">
 					<tr class="bg-bg-elevated">

@@ -62,7 +62,7 @@ flows:
 
 # Ratings
 ratings:
-  permitDifficulty: 1
+  permitDifficulty: 2
   amazingness: 4
   popularity: 4
   technicalDifficulty: 3
