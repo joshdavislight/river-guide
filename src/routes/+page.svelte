@@ -101,6 +101,7 @@
 	let selectedState = $state('all');
 	let selectedPermit = $state('all');
 	let viewMode = $state<'cards' | 'table' | 'calendar'>('table');
+	let viewModeInitialized = false;
 
 	// Sorting state for table view
 	let sortColumn = $state<string>('name');
@@ -118,6 +119,24 @@
 	});
 	
 	let columnsInitialized = false;
+
+	// Load viewMode from localStorage on mount (only once)
+	$effect(() => {
+		if (browser && !viewModeInitialized) {
+			viewModeInitialized = true;
+			const saved = localStorage.getItem('viewMode');
+			if (saved === 'cards' || saved === 'table' || saved === 'calendar') {
+				viewMode = saved;
+			}
+		}
+	});
+
+	// Save viewMode to localStorage when changed
+	$effect(() => {
+		if (browser && viewModeInitialized) {
+			localStorage.setItem('viewMode', viewMode);
+		}
+	});
 
 	// Column options for the UI
 	const columnOptions = [
