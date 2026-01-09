@@ -124,13 +124,6 @@ Use emoji bullets for important safety and planning notes:
 - 🐻 **Wildlife** - Description
 ```
 
-### Content Guidelines
-
-- Be accurate and specific—boaters rely on this information
-- Include mile markers for rapids and camps when known
-- Note hazards honestly; underplaying dangers puts people at risk
-- Update `lastUpdated` when making changes
-
 ---
 
 ## Project Structure
