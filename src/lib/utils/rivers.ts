@@ -2,6 +2,9 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { marked } from 'marked';
+import type { SeasonData, Caveat } from './parseRiverSeasons';
+
+export type { SeasonData, Caveat };
 
 export interface RiverData {
 	name: string;
@@ -98,6 +101,7 @@ export interface RiverData {
 	};
 	featured?: boolean;
 	lastUpdated?: string;
+	seasons?: SeasonData;
 }
 
 export interface River {

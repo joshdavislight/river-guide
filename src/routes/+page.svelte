@@ -3,6 +3,7 @@
 		SlidersHorizontal,
 		LayoutGrid,
 		List,
+		CalendarDays,
 		MapPin,
 		Waves,
 		ArrowUpDown,
@@ -13,6 +14,7 @@
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
 	import RiverCard from '$lib/components/RiverCard.svelte';
+	import RiverCalendar from '$lib/components/RiverCalendar.svelte';
 	import PermitBadge from '$lib/components/PermitBadge.svelte';
 	import { formatMonthDay, getDeadlineInfo } from '$lib/utils/dates';
 	import type { PageData } from './$types';
@@ -24,7 +26,7 @@
 	let showFilters = $state(false);
 	let selectedState = $state('all');
 	let selectedPermit = $state('all');
-	let viewMode = $state<'cards' | 'table'>('table');
+	let viewMode = $state<'cards' | 'table' | 'calendar'>('table');
 
 	// Sorting state for table view
 	let sortColumn = $state<string>('name');
@@ -214,6 +216,18 @@
 					<List class="h-4 w-4" />
 					<span class="hidden sm:inline">Table</span>
 				</button>
+				<button
+					type="button"
+					onclick={() => (viewMode = 'calendar')}
+					class="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-colors
+						{viewMode === 'calendar'
+						? 'bg-accent-primary/20 text-accent-primary'
+						: 'text-text-secondary hover:text-text-primary'}"
+					aria-label="Calendar view"
+				>
+					<CalendarDays class="h-4 w-4" />
+					<span class="hidden sm:inline">Calendar</span>
+				</button>
 			</div>
 
 			<button
@@ -293,16 +307,23 @@
 		</div>
 	{/if}
 
-	<!-- Results count -->
-	<div class="mb-4 flex items-center justify-between">
-		<p class="text-sm text-text-muted">
-			{#if sortedRivers().length === data.rivers.length}
-				{data.rivers.length} rivers
-			{:else}
-				{sortedRivers().length} of {data.rivers.length} rivers
-			{/if}
-		</p>
-	</div>
+	<!-- Results count (only for cards/table, calendar has its own) -->
+	{#if viewMode !== 'calendar'}
+		<div class="mb-4 flex items-center justify-between">
+			<p class="text-sm text-text-muted">
+				{#if sortedRivers().length === data.rivers.length}
+					{data.rivers.length} rivers
+				{:else}
+					{sortedRivers().length} of {data.rivers.length} rivers
+				{/if}
+			</p>
+		</div>
+	{/if}
+
+	<!-- Calendar View -->
+	{#if viewMode === 'calendar'}
+		<RiverCalendar rivers={data.rivers} />
+	{/if}
 
 	<!-- Card View -->
 	{#if viewMode === 'cards'}

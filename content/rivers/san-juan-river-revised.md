@@ -127,6 +127,12 @@ dangers:
   - type: "navajo-nation"
     description: "Navajo Nation permit needed for activities on river left."
 
+# Season Overrides
+seasons:
+  optimal: [4, 5]
+  good: [6]
+  avoid: [7]
+
 # Meta
 featured: false
 lastUpdated: "2025-01-08"
