@@ -6,27 +6,11 @@
 	import PermitBadge from '$lib/components/PermitBadge.svelte';
 	import StarRating from '$lib/components/StarRating.svelte';
 	import { formatMonthDay } from '$lib/utils/dates';
+	import { formatFlow, slugify, shortenLabel } from '$lib/utils/formatting';
 
 	let { data }: { data: PageData } = $props();
 
 	let sections: { id: string; label: string }[] = $state([]);
-
-	function slugify(text: string): string {
-		return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-	}
-
-	function shortenLabel(text: string): string {
-		// Remove common prefixes and keep it concise
-		const shortened = text
-			.replace(/^(The|Special|Major|Best)\s+/i, '')
-			.replace(/\s*&\s*Warnings$/i, '')
-			.replace(/\s+Services$/i, '');
-		return shortened;
-	}
-
-	function formatFlow(value: number): string {
-		return value.toLocaleString();
-	}
 
 	function scrollToSection(e: MouseEvent, id: string) {
 		e.preventDefault();

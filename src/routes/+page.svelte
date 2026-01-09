@@ -16,7 +16,7 @@
 	import RiverCard from '$lib/components/RiverCard.svelte';
 	import RiverCalendar from '$lib/components/RiverCalendar.svelte';
 	import PermitBadge from '$lib/components/PermitBadge.svelte';
-	import { formatMonthDay, getDeadlineInfo } from '$lib/utils/dates';
+	import { isSelfIssuePermit, getPermitDeadline, isLotteryClosingSoon } from '$lib/utils/riverHelpers';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
@@ -164,62 +164,6 @@
 		}
 	}
 
-	function getPermitDeadline(river: (typeof data.rivers)[0]): string | null {
-		// No permit required
-		if (river.permit?.required === false) return 'No permit required';
-
-		// No permit info at all
-		if (!river.permit) return null;
-
-		// Check if lottery window has valid dates
-		const lotteryWindow = river.permit.lotteryWindow;
-		if (!lotteryWindow?.open || !lotteryWindow?.close) {
-			// No lottery - check for rolling availability or self-issue in system string
-			const system = river.permit.system;
-			if (system) {
-				// Check for self-issue permits
-				if (system.toLowerCase().includes('self-issue') || system.toLowerCase().includes('self issue')) {
-					return 'Self issue';
-				}
-				// Extract number of days from patterns like "(60 days advance)" or "(60 days)"
-				const match = system.match(/\((\d+)\s*days/i);
-				if (match) {
-					return `Rolling - ${match[1]} days`;
-				}
-			}
-			return null;
-		}
-
-		const info = getDeadlineInfo(lotteryWindow);
-		if (!info) return null;
-
-		if (info.status === 'open') {
-			return `Closes ${info.closesOn}`;
-		} else if (info.status === 'upcoming' && info.daysUntilOpen && info.daysUntilOpen <= 60) {
-			return `Opens ${info.opensOn}`;
-		}
-		return info.opensOn ? `Opens ${info.opensOn}` : null;
-	}
-
-	function isLotteryClosingSoon(river: (typeof data.rivers)[0]): boolean {
-		const lotteryWindow = river.permit?.lotteryWindow;
-		if (!lotteryWindow?.open || !lotteryWindow?.close) return false;
-
-		const info = getDeadlineInfo(lotteryWindow);
-		if (!info) return false;
-
-		// Check if lottery is open and closing within 30 days
-		return info.status === 'open' && (info.daysUntilClose ?? 999) <= 30;
-	}
-
-	function isSelfIssuePermit(river: (typeof data.rivers)[0]): boolean {
-		const system = river.permit?.system?.toLowerCase() ?? '';
-		return system.includes('self-issue') || 
-			system.includes('self issue') || 
-			system.includes('boater pass') ||
-			system.includes('first-come') ||
-			system.includes('fcfs');
-	}
 </script>
 
 <svelte:head>

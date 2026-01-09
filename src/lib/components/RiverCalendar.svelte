@@ -3,6 +3,8 @@
 	import PermitBadge from './PermitBadge.svelte';
 	import type { SeasonData, Caveat } from '$lib/utils/parseRiverSeasons';
 	import { getMonthStatus, getSeverityLabel, getSeverityHeading } from '$lib/utils/parseRiverSeasons';
+	import { getCellBackground, getStatusLabel, getCaveatDotColor, getCaveatTypeLabel } from '$lib/utils/calendarHelpers';
+	import { isSelfIssuePermit } from '$lib/utils/riverHelpers';
 
 	interface River {
 		name: string;
@@ -102,60 +104,6 @@
 		return result;
 	});
 
-	// Get cell background color based on status
-	function getCellBg(status: 'optimal' | 'good' | 'avoid' | 'poor'): string {
-		switch (status) {
-			case 'optimal':
-				return 'bg-emerald-500/90';
-			case 'good':
-				return 'bg-blue-500/70';
-			case 'avoid':
-				return 'bg-red-500/70';
-			case 'poor':
-				return 'bg-slate-700/30';
-		}
-	}
-
-	// Get status label for display
-	function getStatusLabel(status: 'optimal' | 'good' | 'avoid' | 'poor'): string {
-		switch (status) {
-			case 'optimal':
-				return 'Optimal';
-			case 'good':
-				return 'Good';
-			case 'avoid':
-				return 'Avoid';
-			case 'poor':
-				return 'Off-season';
-		}
-	}
-
-	// Get caveat icon color
-	function getCaveatDotColor(severity: Caveat['severity']): string {
-		switch (severity) {
-			case 'severe':
-				return 'bg-yellow-400';
-			case 'moderate':
-				return 'bg-orange-400';
-			case 'minor':
-				return 'bg-slate-300';
-		}
-	}
-
-	// Get caveat type label
-	function getCaveatTypeLabel(type: Caveat['type']): string {
-		switch (type) {
-			case 'crowds':
-				return 'Crowds';
-			case 'heat':
-				return 'Heat';
-			case 'bugs':
-				return 'Bugs';
-			case 'flow-window':
-				return 'Flow';
-		}
-	}
-
 	// Handle cell click
 	function handleCellClick(river: River, month: number) {
 		selectedCell = { river, month };
@@ -180,18 +128,6 @@
 		} else {
 			monthFilter = month;
 		}
-	}
-
-	// Check if permit is self-issue
-	function isSelfIssue(river: River): boolean {
-		const system = river.permit?.system?.toLowerCase() ?? '';
-		return (
-			system.includes('self-issue') ||
-			system.includes('self issue') ||
-			system.includes('boater pass') ||
-			system.includes('first-come') ||
-			system.includes('fcfs')
-		);
 	}
 
 	// Extract month from "MM-DD" format
@@ -427,7 +363,7 @@
 								<td class="px-1 py-2">
 									<button
 										onclick={() => handleCellClick(river, month)}
-										class="relative h-8 w-full transition-all hover:scale-105 hover:ring-2 hover:ring-white/30 focus:outline-none focus:ring-2 focus:ring-accent-primary {getCellBg(
+										class="relative h-8 w-full transition-all hover:scale-105 hover:ring-2 hover:ring-white/30 focus:outline-none focus:ring-2 focus:ring-accent-primary {getCellBackground(
 											status
 										)} {bracketClasses || 'rounded'}"
 										title="{river.name} - {MONTHS[monthIndex]}: {getStatusLabel(status)}{caveat
@@ -493,7 +429,7 @@
 				<Calendar class="h-4 w-4 text-text-muted" />
 				<span class="font-medium text-text-primary">{MONTHS[month - 1]}</span>
 			</div>
-			<span class="rounded-full px-3 py-1 text-sm font-medium {getCellBg(status)} text-white">
+			<span class="rounded-full px-3 py-1 text-sm font-medium {getCellBackground(status)} text-white">
 				{getStatusLabel(status)}
 			</span>
 		</div>
@@ -515,7 +451,7 @@
 						<PermitBadge
 							difficulty={river.ratings?.permitDifficulty ?? 1}
 							permitRequired={river.permit?.required !== false}
-							isSelfIssue={isSelfIssue(river)}
+							isSelfIssue={isSelfIssuePermit(river)}
 							compact
 						/>
 					</span>
